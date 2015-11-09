@@ -5,10 +5,10 @@ import play.mvc.*;
 
 import views.html.*;
 
-public class Application extends Controller {
+public class TareasController extends Controller {
 
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok("hola");
     }
 
 }
