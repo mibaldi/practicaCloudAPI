@@ -1,9 +1,13 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import java.util.List;
 
-import views.html.*;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import models.UsuarioModel;
+import play.*;
+import play.data.Form;
+import play.mvc.*;
 
 public class TareasController extends Controller {
 
@@ -11,12 +15,33 @@ public class TareasController extends Controller {
         return ok("hola");
     }
     public Result getUser(String nombre){
-    	return ok("existe "+nombre);
+    	if(UsuarioModel.existe(nombre)){
+    		UsuarioModel uu =UsuarioModel.findByNombre(nombre);
+        	return ok("existe "+uu.nombre);
+    	}else{
+    		return notFound("usuario no existe");
+    	}
+    	
     }
     public Result listaUsuarios(){
-    	return ok("lista usuarios");
+    	
+		if (request().accepts("application/xml")) {
+			return ok(views.xml.vistaUsuarios.render(UsuarioModel.all()));
+		} else if (request().accepts("application/json")) {
+			JsonNode jn = play.libs.Json.toJson(UsuarioModel.all());
+			return ok(jn);
+		} else {
+			return badRequest("Unsupported format");
+		}
     }
     public Result createUser() {
+    	Form<UsuarioModel> form = Form.form(UsuarioModel.class).bindFromRequest();
+    	if (form.hasErrors()) {
+			System.out.println("erorrrrr");
+			return badRequest(form.errorsAsJson());
+		}
+    	UsuarioModel uu=form.get();
+    	uu.save();		
         return ok("usuario creado");
     }
     public Result update(String nombre){

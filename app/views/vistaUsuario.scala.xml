@@ -1,0 +1,7 @@
+@(u:UsuarioModel)
+
+<usuario>
+	<nombre>
+		@u.nombre
+	</nombre>
+</usuario>
