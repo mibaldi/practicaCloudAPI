@@ -3,6 +3,18 @@
 
 # --- !Ups
 
+create table email_model (
+  id                            bigint not null,
+  constraint pk_email_model primary key (id)
+);
+create sequence email_model_seq;
+
+create table password_model (
+  id                            bigint not null,
+  constraint pk_password_model primary key (id)
+);
+create sequence password_model_seq;
+
 create table tags_model (
   id                            bigint not null,
   constraint pk_tags_model primary key (id)
@@ -25,6 +37,12 @@ create sequence usuario_model_seq;
 
 
 # --- !Downs
+
+drop table if exists email_model;
+drop sequence if exists email_model_seq;
+
+drop table if exists password_model;
+drop sequence if exists password_model_seq;
 
 drop table if exists tags_model;
 drop sequence if exists tags_model_seq;
