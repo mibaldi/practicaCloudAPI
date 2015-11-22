@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/practicaapi -Dhttp.port=$PORT -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${postgres://uieghqwculwprt:Zxgymh5CTdf8arM3RTNsny8aNj@ec2-54-217-202-110.eu-west-1.compute.amazonaws.com:5432/danss4hdihaqb3}
+web: target/universal/stage/bin/practicaapi -Dhttp.port=$PORT -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${?DATABASE_URL}
