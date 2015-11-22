@@ -1,0 +1,20 @@
+@()
+
+@main("Welcome to the User Management application") {
+	<script type='text/javascript' src='@routes.Assets.at("javascripts/index.js")'></script>
+
+	<ul id="persons"></ul>
+
+
+	<form method="POST" action="@routes.TareasController.createUser()">
+		<input type="text" name="nombre" placeholder="nombre de usuario"/>
+		<input type="text" name="edad" placeholder="edad de usuario"/>
+		<button>Add Person</button>
+	</form>
+	<form method="GET" action="@routes.TareasController.listaUsuarios()">
+		<button>Lista usuarios</button>
+	</form>
+	<form method="POST" action="@routes.TareasController.delete(0)">
+		<button>Borrar</button>
+	</form>
+}

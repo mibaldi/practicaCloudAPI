@@ -17,7 +17,7 @@ public class TareasController extends Controller {
     public Result getUser(String nombre){
     	if(UsuarioModel.existe(nombre)){
     		UsuarioModel uu =UsuarioModel.findByNombre(nombre);
-        	return ok("existe "+uu.nombre);
+        	return ok(views.xml.vistaUsuario.render(uu));
     	}else{
     		return notFound("usuario no existe");
     	}
@@ -41,14 +41,16 @@ public class TareasController extends Controller {
 			return badRequest(form.errorsAsJson());
 		}
     	UsuarioModel uu=form.get();
-    	uu.save();		
-        return ok("usuario creado");
+    	UsuarioModel.create(uu);		
+        return redirect(routes.TareasController.listaUsuarios());
     }
     public Result update(String nombre){
     	return ok("modificado "+nombre);
     }
-    public Result delete(String nombre){
-    	return ok("borrado "+nombre);
+    public Result delete(long id){
+    	UsuarioModel.delete(id);
+    	System.out.println("borrado "+id);
+    	return redirect(routes.AplicacionController.index());
     }
 
 }

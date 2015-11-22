@@ -3,10 +3,10 @@
 # ~~~~
 
 # Home page
-GET      /                controllers.TareasController.index()
+GET      /                controllers.AplicacionController.index()
 
 # Map static resources from the /public folder to the /assets URL path
-GET      /assets/*file    controllers.Assets.versioned(path="/public", file: Asset)
+GET      /assets/*file     controllers.Assets.at(path="/public", file)
 
 # Get usuario
 GET      /user/:usuario   controllers.TareasController.getUser(usuario)
@@ -21,4 +21,4 @@ POST     /createUser      controllers.TareasController.createUser()
 PUT      /user/:usuario   controllers.TareasController.update(usuario)
 
 # Borrar usuario
-DELETE   /user/:usuario   controllers.TareasController.delete(usuario)
+POST   /user/:id   controllers.TareasController.delete(id: Long)

@@ -13,6 +13,16 @@ public class UsuarioModel  extends Model{
 	public String nombre;
 	public int edad;
 	public UsuarioModel(){}
+	public static void create(UsuarioModel usuario) {
+		usuario.save();
+	}
+
+	public static void delete(Long id) {
+		for (UsuarioModel uu:find.all()){
+			find.byId(uu.id).delete();
+		}
+	}
+
 	public static final Find<Long, UsuarioModel> find = new Find<Long, UsuarioModel>() {
 	};
 
